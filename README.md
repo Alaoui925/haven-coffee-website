@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Haven Coffee + Kitchen ☕
+
+A premium editorial website concept inspired by Haven Coffee + Kitchen, an Australian-inspired brunch café in Annecy, France.
+
+## Overview
+
+Haven is a creative front-end website project designed to translate the warmth, craftsmanship, and personality of an artisanal coffee shop into a modern digital experience.
+
+The design combines editorial typography, warm colors, immersive food photography, hand-drawn illustrations, and smooth animations.
+
+## Design Direction
+
+- **Background:** Cream `#FFF9F5`
+- **Primary Accent:** Terracotta `#E2570B`
+- **Typography:** Elegant italic display fonts paired with handwritten script typography.
+- **Visual Style:** Warm, editorial, organic, and minimal.
+- **Interactions:** Smooth scrolling, animated typography, image masks, and subtle micro-interactions.
+
+## Key Features
+
+- Immersive hero section with image-masked typography.
+- Editorial food and coffee galleries.
+- Interactive coffee and brunch menus.
+- Smooth scrolling navigation.
+- Hand-drawn visual elements.
+- Responsive layouts for desktop, tablet, and mobile.
+- Animated transitions and micro-interactions.
+
+## Tech Stack
+
+- React
+- JavaScript
+- Tailwind CSS
+- GSAP
+- Vite
+- Lucide React
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+git clone https://github.com/YOUR_USERNAME/haven-coffee-website.git
+cd haven-coffee-website
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project Purpose
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This project explores the intersection of modern front-end development, creative web design, visual storytelling, and interactive user experiences.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Credits
 
-## Learn More
+Design inspiration: Haven Coffee + Kitchen — https://haven-annecy.fr/
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This is an independent educational and portfolio project, not the official website of Haven Coffee + Kitchen.
