@@ -1,26 +1,309 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@source "../node_modules/@tremor";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* ── Color roles ─────────────────────────────────────────────────────── */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-active: var(--primary-active);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* ── Type families (Fraunces display / Instrument Sans body / Plex Mono data) ── */
+  --font-sans: var(--font-instrument);
+  --font-heading: var(--font-fraunces);
+  --font-mono: var(--font-plex-mono);
+
+  /* ── Modular scale — base 16px, Major Third 1.25, compressed below 16px
+        (14px floor; sub-16px reserved for captions/labels per whitelist) ── */
+  --text-xs: 0.875rem; /* 14px — captions, stamps, badges (whitelist only) */
+  --text-xs--line-height: 1.45;
+  --text-sm: 0.875rem; /* 14px — secondary UI labels */
+  --text-sm--line-height: 1.5;
+  --text-base: 1rem; /* 16px — body */
+  --text-base--line-height: 1.6;
+  --text-lg: 1.25rem; /* 20px — lead */
+  --text-lg--line-height: 1.4;
+  --text-xl: 1.5625rem; /* 25px — H4 */
+  --text-xl--line-height: 1.3;
+  --text-2xl: 1.9375rem; /* 31px — H3 */
+  --text-2xl--line-height: 1.2;
+  --text-3xl: 2.4375rem; /* 39px — H2 */
+  --text-3xl--line-height: 1.1;
+  --text-4xl: 3.0625rem; /* 49px */
+  --text-4xl--line-height: 1.08;
+  --text-5xl: 3.8125rem; /* 61px */
+  --text-5xl--line-height: 1.05;
+  /* Display — clamp only at the top of the scale, rem-based so zoom works */
+  --text-display: clamp(2.875rem, 2.25rem + 3.2vw, 5rem);
+  --text-display--line-height: 1.02;
+  --text-display-md: clamp(2.125rem, 1.75rem + 2vw, 3.8125rem);
+  --text-display-md--line-height: 1.08;
+
+  /* ── Radii — warm-professional family (buttons/inputs 9.6px, cards 12px) ── */
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* ── Motion tokens — keyframes declared below, in global scope ── */
+  --animate-marquee: marquee 46s linear infinite;
+  --animate-fade-up: fade-up 700ms cubic-bezier(0.2, 0, 0, 1) both;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  /* Slowfire palette — every neutral is tinted with the brand hue (H ≈ 28) */
+  --background: #171009;
+  --foreground: #f3e9dc;
+  --card: #221710;
+  --card-foreground: #f3e9dc;
+  --popover: #241a12;
+  --popover-foreground: #f3e9dc;
+  --primary: #e2570b;
+  --primary-foreground: #20130a;
+  --primary-hover: #f97316; /* dark theme: hover lightens (inverted logic) */
+  --primary-active: #ea5a0d;
+  --secondary: #2e2117;
+  --secondary-foreground: #eaddc6;
+  --muted: #2a1e14;
+  --muted-foreground: #b9a48d;
+  --accent: #33241a;
+  --accent-foreground: #f3e9dc;
+  --destructive: #e88c7a;
+  --success: #9bbb87;
+  --border: #3a2b20;
+  --input: #9a7b5c; /* ≥3:1 against both page and card surfaces */
+  --ring: #f97316;
+  --chart-1: #e2570b;
+  --chart-2: #c98a3d;
+  --chart-3: #c9b79f;
+  --chart-4: #b9a48d;
+  --chart-5: #6e5744;
+  --radius: 0.75rem;
+  --sidebar: #171009;
+  --sidebar-foreground: #f3e9dc;
+  --sidebar-primary: #e2570b;
+  --sidebar-primary-foreground: #20130a;
+  --sidebar-accent: #2a1e14;
+  --sidebar-accent-foreground: #f3e9dc;
+  --sidebar-border: #3a2b20;
+  --sidebar-ring: #f97316;
+}
+
+/* ── Keyframes (global scope so they always ship) ──────────────────────── */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground;
+    background-image:
+      radial-gradient(1100px 520px at 78% -12%, rgba(226, 87, 11, 0.075), transparent 60%),
+      radial-gradient(900px 480px at -10% 10%, rgba(201, 138, 61, 0.05), transparent 55%);
+    background-attachment: fixed;
+  }
+  /* Weight bump for light-on-dark halation compensation lives in components;
+     scales stay readable per the typography system. */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  figcaption,
+  blockquote,
+  dt {
+    text-wrap: balance;
+  }
+  p,
+  li,
+  dd {
+    text-wrap: pretty;
+  }
+  /* Anchored sections clear the fixed header */
+  [id] {
+    scroll-margin-top: 4.5rem;
+  }
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+  a:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  /* Film-grain over everything (decorative, non-interactive) */
+  .grain {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+    opacity: 0.045;
+  }
+  /* Dot matrix used behind the hero */
+  .dot-grid {
+    background-image: radial-gradient(rgba(243, 233, 220, 0.075) 1px, transparent 1px);
+    background-size: 26px 26px;
+  }
+  /* Roast stamp — mono, letterpressed, slightly rotated */
+  .stamp {
+    font-family: var(--font-plex-mono), monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    border: 1.5px solid currentColor;
+    border-radius: 0.375rem;
+    padding: 0.375rem 0.625rem;
+  }
+  /* Skip link — visible on keyboard focus only */
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    z-index: 70;
+    transform: translateY(-160%);
+    transition: transform 200ms ease-out;
+    background: var(--popover);
+    color: var(--foreground);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+  }
+  .skip-link:focus-visible {
+    transform: none;
+  }
+}
+
+/* Scroll reveal — content begins visible; hidden only once JS is live,
+   restored instantly for no-JS (noscript) and reduced-motion users. */
+.reveal {
+  opacity: 1;
+  transform: none;
+}
+.js .reveal:not(.is-in) {
+  opacity: 0;
+  transform: translateY(24px);
+}
+.js .reveal.is-in {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 600ms cubic-bezier(0.2, 0, 0, 1),
+    transform 600ms cubic-bezier(0.2, 0, 0, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+/* no-JS fallback (layout ships a matching <noscript> style block) */
+noscript + .js .reveal:not(.is-in),
+html:not(.js) .reveal:not(.is-in) {
+  opacity: 1;
+  transform: none;
+}
+
+/* Tremor chart — warm-tinted chrome so the curve sits in the palette */
+.roast-chart .recharts-cartesian-axis-tickText {
+  fill: #b9a48d;
+  font-size: 11px;
+  font-family: var(--font-plex-mono), monospace;
+}
+.roast-chart .recharts-cartesian-axis-line,
+.roast-chart .recharts-cartesian-axis-tick-line {
+  stroke: rgba(243, 233, 220, 0.14);
+}
+.roast-chart .recharts-cartesian-grid line {
+  stroke: rgba(243, 233, 220, 0.07);
+}
+.roast-chart .recharts-curve.recharts-tooltip-cursor {
+  stroke: rgba(249, 115, 22, 0.4);
+}
+/* The line + hover dot: Tremor builds these stroke/fill utility classes at
+   runtime (`stroke-orange-500`), which Tailwind cannot see in source, so paint
+   them with palette hexes instead. */
+.roast-chart .recharts-curve.recharts-line-curve {
+  stroke: #f97316;
+}
+.roast-chart .recharts-curve.recharts-line-curve:hover {
+  stroke: var(--color-primary, #f97316);
+}
+.roast-chart .recharts-active-dot circle {
+  fill: #f97316;
+  stroke: #171009;
+  stroke-width: 2;
+  filter: drop-shadow(0 0 0 #171009);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .js .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  .animate-marquee {
+    animation: none !important;
+  }
 }
