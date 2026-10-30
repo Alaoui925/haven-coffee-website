@@ -83,7 +83,7 @@ export function Navbar() {
               className="w-full border-l border-border bg-background sm:max-w-sm"
             >
               <SheetHeader>
-                <SheetTitle className="sr-only">Menu — Slowfire Roasting Co.</SheetTitle>
+                <SheetTitle className="sr-only">Menu — Haven Coffee</SheetTitle>
                 <SheetDescription className="font-mono text-xs uppercase tracking-[0.04em]">
                   Roasted Thursdays · Portland, OR
                 </SheetDescription>

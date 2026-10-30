@@ -14,8 +14,8 @@ export function Wordmark({ className }: { className?: string }) {
         </svg>
       </span>
       <span className="font-heading text-lg font-semibold tracking-tight text-foreground">
-        Slowfire
-        <span className="hidden text-muted-foreground sm:inline"> Roasting Co.</span>
+        Haven
+        <span className="hidden text-muted-foreground sm:inline"> Coffee</span>
       </span>
     </a>
   );

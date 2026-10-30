@@ -21,18 +21,18 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://slowfireroasting.coffee"),
+  metadataBase: new URL("https://havencoffee.example"),
   title: {
-    default: "Slowfire Roasting Co. — Coffee roasted the slow way",
-    template: "%s — Slowfire Roasting Co.",
+    default: "Haven Coffee — Roasted the slow way",
+    template: "%s — Haven Coffee",
   },
   description:
     "A small-batch roastery in Southeast Portland. Fourteen single origins and one house blend, roasted eight kilos at a time on a 1962 Probat — and mailed within 48 hours of first crack.",
   openGraph: {
     type: "website",
-    siteName: "Slowfire Roasting Co.",
+    siteName: "Haven Coffee",
     locale: "en_US",
-    title: "Slowfire Roasting Co. — Coffee roasted the slow way",
+    title: "Haven Coffee — Roasted the slow way",
     description:
       "Fourteen single origins and one obsessive blend, roasted on a 1962 Probat in SE Portland and mailed within 48 hours of first crack.",
     images: [
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Slowfire Roasting Co. — Coffee roasted the slow way",
+    title: "Haven Coffee — Roasted the slow way",
     description:
       "A small-batch roastery in Southeast Portland. Roasted Thursdays, shipped Fridays.",
     images: [

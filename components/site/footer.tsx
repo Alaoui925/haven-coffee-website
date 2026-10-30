@@ -62,7 +62,7 @@ export function Footer() {
 
         <div className="mt-14 flex flex-col gap-3 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-muted-foreground">
-            © 2026 Slowfire Roasting Co. All batches cupped before they ship.
+            © 2026 Haven Coffee. All batches cupped before they ship.
           </p>
           <p className="font-mono text-sm text-muted-foreground">
             PROBAT UG-22 · 1962 — ROAST LOG ON EVERY BAG

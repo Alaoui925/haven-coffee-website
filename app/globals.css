@@ -88,7 +88,7 @@
 }
 
 :root {
-  /* Slowfire palette — every neutral is tinted with the brand hue (H ≈ 28) */
+  /* Haven Coffee palette — every neutral is tinted with the brand hue (H ≈ 28) */
   --background: #171009;
   --foreground: #f3e9dc;
   --card: #221710;
