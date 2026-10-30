@@ -38,7 +38,7 @@ The design combines editorial typography, warm colors, immersive food photograph
 ## Getting Started
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/haven-coffee-website.git
+git clone https://github.com/Alaoui925/haven-coffee-website.git
 cd haven-coffee-website
 npm install
 npm run dev
